@@ -16,13 +16,11 @@ public class MesaController {
     @Autowired
     private MesaRepository mesaRepository;
 
-    // Obtém todas as mesas
     @GetMapping
     public List<Mesa> getAllMesas() {
         return mesaRepository.findAll();
     }
 
-    // Obtém uma mesa pelo ID
     @GetMapping("/{id}")
     public ResponseEntity<Mesa> getMesaById(@PathVariable Integer id) {
         return mesaRepository.findById(id)
@@ -30,13 +28,11 @@ public class MesaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Cria uma nova mesa
     @PostMapping
     public Mesa createMesa(@RequestBody Mesa mesa) {
         return mesaRepository.save(mesa);
     }
 
-    // Atualiza uma mesa existente
     @PutMapping("/{id}")
     public ResponseEntity<Mesa> updateMesa(@PathVariable Integer id, @RequestBody Mesa mesaDetails) {
         return mesaRepository.findById(id)
